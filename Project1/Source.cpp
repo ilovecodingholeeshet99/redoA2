@@ -41,11 +41,11 @@ int main()
 	World* world = new World; // World point allocates space for the world
 	world->SpawnPlayer(player); 
 	world->SpawnWeapon(weapon, player);
+	world->SpawnHG(HG1);
+	world->SpawnHG(HG2);
 	world->SpawnGoblin(gob1);
 	world->SpawnGoblin(gob2);
 	world->SpawnGoblin(gob3);
-	world->SpawnHG(HG1);
-	world->SpawnHG(HG2);
 	world->printBoard();
 	while (true)
 	{
@@ -57,6 +57,9 @@ int main()
 		std::cout << player->getAttack() << std::endl;
 		std::cin >> move;
 		player->playerMovement(move, player);  // Ask player to move
+		world->enemyAI(player, gob1);
+		world->enemyAI(player, gob2);
+		world->enemyAI(player, gob3);
 		system("CLS"); // clear screen so no dupe board
 		if (HG1->healthIncrement(player))
 		{

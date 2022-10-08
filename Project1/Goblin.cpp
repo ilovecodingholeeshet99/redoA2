@@ -19,12 +19,22 @@ int Goblin::getY()
 	return ypos;
 }
 
-int Goblin::setX()
+int Goblin::increaseX()
+{
+	return xpos++;
+}
+
+int Goblin::increaseY()
+{
+	return ypos++;
+}
+
+int Goblin::decreaseX()
 {
 	return xpos--;
 }
 
-int Goblin::setY()
+int Goblin::decreaseY()
 {
 	return ypos--;
 }

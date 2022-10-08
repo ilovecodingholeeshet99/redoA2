@@ -12,8 +12,10 @@ public:
 	Goblin();
 	int getX();
 	int getY();
-	int setX();
-	int setY();
+	int increaseX();
+	int increaseY();
+	int decreaseX();
+	int decreaseY();
 	char getSymbol();
 	void CheckSameCoord(Goblin* gob);
 	void PlayerSameCoord(Character* player);

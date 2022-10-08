@@ -113,6 +113,14 @@ void World::enemyAI(Character* player, Goblin* gob)
 	int vecY;
 	vecX = player->getX() - gob->getX(); // get "distance" for X
 	vecY = player->getY() - gob->getY(); // get "distance" for Y
+	if (vecX > 0)
+	{
+		gob->decreaseX();
+	}
+	if (vecY > 0)
+	{
+		gob->decreaseX();
+	}
 }
 
 //bool World::PlayerClashHG(Character* player, HealthGlobe* HG)
