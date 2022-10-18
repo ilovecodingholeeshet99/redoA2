@@ -80,6 +80,13 @@ void World::clearBoard(Character* player)
 	}
 }
 
+void World::deleteOldGoblin(Goblin *gob)
+{
+    if (gob->getX() == gob->getOldX() && gob->getY() == gob->GetOldY())
+        return;
+    board[gob->GetOldY()][gob->GetOldX()] = ' ';
+}
+
 bool World::boundaryCheck(Character* player) 
 {
 	if (player->getX() < 0 || player->getX() > player->GetMaxSize() || player->getY() < 0 || player->getY() > player->GetMaxSize())

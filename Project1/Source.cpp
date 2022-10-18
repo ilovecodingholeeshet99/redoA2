@@ -43,23 +43,23 @@ int main()
 	world->SpawnWeapon(weapon, player);
 	world->SpawnHG(HG1);
 	world->SpawnHG(HG2);
-	world->SpawnGoblin(gob1);
-	world->SpawnGoblin(gob2);
-	world->SpawnGoblin(gob3);
 	world->printBoard();
 	while (true)
 	{
 		char move;
 		player->PlayerLastLocation(); // save player last x and y position
+        gob1->saveOldPos();
+        gob2->saveOldPos();
+        gob3->saveOldPos();
 		std::cout << "(W)(A)(S)(D) to move and (H) to display stats: " << std::endl;
 		std::cout << player->getX() << " " << player->getY() << std::endl;
 		std::cout << player->getHealth() << std::endl;
 		std::cout << player->getAttack() << std::endl;
 		std::cin >> move;
 		player->playerMovement(move, player);  // Ask player to move
-		world->enemyAI(player, gob1);
+		/*world->enemyAI(player, gob1);
 		world->enemyAI(player, gob2);
-		world->enemyAI(player, gob3);
+		world->enemyAI(player, gob3);*/
 		system("CLS"); // clear screen so no dupe board
 		if (HG1->healthIncrement(player))
 		{
@@ -103,8 +103,20 @@ int main()
 			player->setX(player->GetOldX());
 			player->setY(player->GetOldY());
 		}*/
+        // Do AI things
+        gob1->DoAI(player);
+        gob2->DoAI(player);
+        gob3->DoAI(player);
+        // Respawn Goblin at correct spot
+        world->SpawnGoblin(gob1);
+        world->SpawnGoblin(gob2);
+        world->SpawnGoblin(gob3);
+        // Delete old goblin
+        world->deleteOldGoblin(gob1);
+        world->deleteOldGoblin(gob2);
+        world->deleteOldGoblin(gob3);
 		world->SpawnPlayer(player); // spawn again to updated position
-		world->clearBoard(player); // set saved last player position to blank 
+		world->clearBoard(player); // set saved last player position to blank
 		world->printBoard();
 	}
 }	

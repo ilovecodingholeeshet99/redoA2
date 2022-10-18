@@ -18,6 +18,7 @@ public:
 	void printBoard();
 	char** getBoard();
 	void clearBoard(Character* player);
+	void deleteOldGoblin(Goblin* gob);
 	bool boundaryCheck(Character* player);
 	bool PlayerClashGoblin(Character* player, Goblin* goblin);
 	bool WeaponSameCoord(Weapon* weapon, Goblin* goblin);
